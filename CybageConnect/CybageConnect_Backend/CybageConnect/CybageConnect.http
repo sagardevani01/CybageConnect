@@ -1,0 +1,6 @@
+@CybageConnect_HostAddress = http://localhost:5029
+
+GET {{CybageConnect_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

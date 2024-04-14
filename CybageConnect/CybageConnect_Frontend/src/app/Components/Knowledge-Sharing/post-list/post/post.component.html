@@ -1,0 +1,43 @@
+<!-- this is for showing individual post and like count -->
+<div class="list-group-item">
+    <h5 class="mb-1">User : {{ postDetail.userName }}</h5>
+    <p class="mb-1">Category : {{postDetail.categoryName}}</p>
+    <p class="mb-1">Posted on: {{ postDetail.creationDate }}</p>
+    <img *ngIf="postDetail.imageUrl" [src]="postDetail.imageUrl" alt="Post Image" class="img-fluid">
+    <p class="mb-1">Content: {{ postDetail.content }}</p>
+    <button (click)="toggleLike()">Like</button>
+    <button (click)="editPost()">Edit</button>
+    <button (click)="deletePost()">Delete</button>
+    <button (click)="showComment()">Load Comments</button>
+    <p class="mb-1"> Likes : {{likes}}</p>
+  </div>
+
+  <!-- this is for displaying comment section -->
+  <div #comment tabindex="-1" class="card modal">
+    <div class="card-header">
+      Comments
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" name="comment" id="comment" class="form-control" placeholder="write your comment here" [(ngModel)] = "content">
+      <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="addComment()">Comment</button>
+    </div>
+    
+    <ul *ngFor="let comment of comments" class="list-group list-group-flush">
+      <li class="list-group-item">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p #textId hidden>{{comment.id}}</p>
+            <strong>{{comment.userName}}</strong>
+            <small class="text-muted"> {{comment.creationDate}}</small>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline-primary btn-sm" (click)="editComment(textId)">Edit</button>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteComment(textId)">Delete</button>
+          </div>
+        </div>
+        <p>{{comment.content}}</p>
+      </li>
+    </ul>
+    <button (click)="closeComment()">Load Less</button>
+  </div>
+  

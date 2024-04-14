@@ -1,0 +1,29 @@
+
+
+.container {
+
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Adjusted alignment */
+}
+
+.fontStyle {
+  color: #f0f8ff;
+  font-style: italic;
+  font-weight: bold;
+  font-size: large;
+}
+
+.navbar-brand img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%; /* Adjusted to make it a perfect circle */
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 768px) {
+  .header .navbar-nav {
+      flex-direction: column;
+  }
+}
