@@ -1,0 +1,21 @@
+<div class="container card m-2">
+  <div class="innerContainer">
+    <img
+      [src]="user.profilePicture ? user.profilePicture : defaultImage"
+      alt="pic"
+      class="image"
+    />
+    <h5 class="card-title">{{ user.firstName }} {{ user.lastName }}</h5>
+    <p class="card-text text-muted">
+      {{ user.email }}
+    </p>
+    <p class="card-text text-muted">
+      {{ user.designation }}
+    </p>
+    <p class="card-text text-muted">{{ user.location }}</p>
+
+    <a class="button-43" (click)="sendConnectionRequest(user.id)">
+      <mat-icon>add</mat-icon>CONNECT
+    </a>
+  </div>
+</div>

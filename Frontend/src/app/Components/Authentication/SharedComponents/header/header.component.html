@@ -1,0 +1,40 @@
+<nav class="navbar">
+  <div class="navbar-container container">
+    <input type="checkbox" name="" id="" />
+    <div class="hamburger-lines">
+      <span class="line line1"></span>
+      <span class="line line2"></span>
+      <span class="line line3"></span>
+    </div>
+    <ul class="menu-items">
+      <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" routerLink="/Home">
+          <i class="fas fa-home"></i>
+          <span class="menu-txt">Home</span>
+        </a>
+      </li>
+      <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" routerLink="/Network">
+          <i class="fas fa-network-wired"> </i>
+          <span class="menu-txt">Network</span>
+          <span *ngIf="pendingUsers && pendingUsers.length > 0" class="rounded">
+            {{ pendingUsers.length }}</span
+          >
+        </a>
+      </li>
+      <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" routerLink="/MyProfile">
+          <i class="fas fa-user"></i>
+          <span class="menu-txt">My profile </span>
+        </a>
+      </li>
+      <li class="nav-item me-3 me-lg-0">
+        <a class="nav-link" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="menu-txt">Logout</span>
+        </a>
+      </li>
+    </ul>
+    <img src="../../../../../assets/Images/LogoNew.png" alt="" class="logo" />
+  </div>
+</nav>

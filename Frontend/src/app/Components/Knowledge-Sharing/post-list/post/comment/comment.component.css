@@ -1,0 +1,18 @@
+.secondary-buttons-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  
+    button {
+      background: none;
+      border: none;
+    }
+  }
+
+  button {
+    svg:hover {
+      stroke: rgb(8, 186, 218);
+    }
+  }
+
+  

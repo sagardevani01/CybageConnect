@@ -1,0 +1,74 @@
+.container{
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; 
+  width: fit-content;
+  padding: 0.8rem;
+  align-self: center;
+}
+
+.image{
+  height: 80px;
+  width: 80px;
+  border-radius: 80px;
+  object-fit: cover;
+}
+
+.container:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.innerContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Button */
+.button-43 {
+  background-image: linear-gradient(-180deg, rgba(55, 174, 226, 0.9) 0%, rgba(30, 150, 200, 0.9) 100%);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-size: 16px;
+  justify-content: center;
+  padding: 1rem 1.75rem;
+  text-decoration: none;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-43:hover {
+  background-image: linear-gradient(-180deg, rgba(29, 149, 201, 0.9) 0%, rgba(23, 117, 156, 0.9) 100%);
+}
+
+@media (min-width: 768px) {
+  .button-43 {
+    padding: 1rem 2rem;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  
+  .image {
+    height: 60px;
+    width: 60px;
+    border-radius: 60px;
+  }
+}

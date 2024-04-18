@@ -1,0 +1,302 @@
+
+<section class="p-3 p-md-2 p-xl-3">
+  <div class="container">
+    <div class="card border-light-subtle shadow-sm inner-container">
+      <div class="row g-0" >
+        <div class="col-12 col-md-6 img-container">
+          <img
+            class="img-fluid rounded-start w-100 h-100 object-fit-cover"
+            loading="lazy"
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="BootstrapBrain Logo"
+          />
+        </div>
+        <div class="col-12 col-md-6" id="formContainer">
+          <div class="card-body p-3 p-md-4 p-xl-5">
+            <div class="row">
+              <div class="col-12">
+                <div class="mb-5">
+                  <h2 class="h2">Registration</h2>
+                </div>
+              </div>
+            </div>
+            <form [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+              <div class="row gy-3 gy-md-4 overflow-hidden">
+                <div class="col-md-6 col-sm-6">
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="firstName"
+                      id="firstName"
+                      formControlName="firstname"
+                      placeholder="First Name"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('firstname')?.invalid &&
+                        registrationForm?.get('firstname')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      First Name is required and should contain only alphabets.
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="email"
+                      class="form-control"
+                      name="email"
+                      id="email"
+                      placeholder="Email"
+                      formControlName="email"
+                      (input)="resetEmailError()"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('email')?.invalid &&
+                        registrationForm?.get('email')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Please enter a valid email address.
+                    </div>
+                    <div *ngIf="emailError" class="text-danger">
+                      {{ emailError }}
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="username"
+                      id="username"
+                      formControlName="username"
+                      (input)="resetUsernameError()"
+                      placeholder="Username"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('username').invalid &&
+                        registrationForm?.get('username')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Username is required and should consist of letters,
+                      numbers, underscores, and hyphens only. Length should be
+                      between 6 and 16 characters.
+                    </div>
+                    <div *ngIf="usernameError" class="text-danger">
+                      {{ usernameError }}
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="department"
+                      id="department"
+                      formControlName="department"
+                      placeholder="Department"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('department')?.invalid &&
+                        registrationForm?.get('department')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Department is required.
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="location"
+                      id="location"
+                      formControlName="location"
+                      placeholder="Location"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('location')?.invalid &&
+                        registrationForm?.get('location')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Location is required.
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="col-md-6 col-sm-6">
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="lastName"
+                      id="lastName"
+                      formControlName="lastname"
+                      placeholder="Last name"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('lastname')?.invalid &&
+                        registrationForm?.get('lastname')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Last Name is required and should contain only alphabets.
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="phone"
+                      id="phone"
+                      formControlName="phone"
+                      (input)="resetPhoneError()"
+                      placeholder="Phone Number"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('phone')?.invalid &&
+                        registrationForm?.get('phone').touched
+                      "
+                      class="text-danger"
+                    >
+                      Phone number is required
+                    </div>
+                    <div
+                      *ngIf="registrationForm?.get('phone').hasError('pattern')"
+                      class="text-danger"
+                    >
+                      Phone number is should contain exactly 10 digits.
+                    </div>
+                    <div *ngIf="phoneError" class="text-danger">
+                      {{ phoneError }}
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="password"
+                      class="form-control"
+                      name="password"
+                      id="password"
+                      formControlName="password"
+                      placeholder="Password"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('password')?.invalid &&
+                        registrationForm?.get('password')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Password must be at least 8 characters long and contain at
+                      least one uppercase letter, one lowercase letter, one
+                      digit, and one special character.
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="password"
+                      id="cpassword"
+                      class="form-control"
+                      name="cpassword"
+                      formControlName="cpassword"
+                      placeholder="Confirm Password"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('cpassword')?.invalid &&
+                        registrationForm?.get('cpassword')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Passwords do not match.
+                    </div>
+                  </div>
+                  <div class="col-12 form-field">
+                    
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="designation"
+                      id="designation"
+                      formControlName="designation"
+                      placeholder="Designation"
+                    />
+                    <div
+                      *ngIf="
+                        registrationForm?.get('designation')?.invalid &&
+                        registrationForm?.get('designation')?.touched
+                      "
+                      class="text-danger"
+                    >
+                      Designation is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 form-field">
+                    
+                  <input
+                    type="file"
+                    class="form-control"
+                    name="profile"
+                    id="profile"
+                    formControlName="profile"
+                    (change)="onFileSelected($event)"
+                    placeholder="Profile Picture"
+                  />
+                  <div
+                    *ngIf="
+                      registrationForm?.get('profile')?.invalid &&
+                      registrationForm?.get('profile')?.touched
+                    "
+                    class="text-danger"
+                  >
+                    Upload your profile photo.
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button class="btn bsb-btn-xl" type="submit"
+                    [disabled]="!profileImage">
+                      Sign up
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-12">
+                <hr class="mt-5 mb-4 border-secondary-subtle" />
+                <p class="m-0 text-color text-center">
+                  Already have an account?
+                  <a
+                    class="link-primary text-decoration-none"
+                    routerLink="/Login"
+                    >Sign in</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

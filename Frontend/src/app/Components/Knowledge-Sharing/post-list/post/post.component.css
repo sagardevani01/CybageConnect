@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  
+}
+
+* {
+  font-family: "Poppins", sans-serif !important;
+
+  margin: 0;
+}
+
+.card{
+  height: 500px;
+  width: 500px;
+}
+.post {
+  background-color: #fff;
+  border-radius: 2rem;
+  padding: 20px;
+  margin-bottom: 20px;
+  /* box-shadow: none !important; */
+  box-shadow: rgba(0, 0, 0, 0.03) 0px 10px 50px;
+}
+
+
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.post-header-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 !important;
+  background: rgb(208, 208, 208);
+  border: 3px solid white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  overflow: hidden;
+
+  img{
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.post-header .category, .post-header .date {
+  font-size: 0.8rem !important;
+}
+
+
+.main-image-container {
+  height: 300px;
+  width: 100%;
+  background: black;
+  border-radius: 2rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  box-shadow: rgba(17, 12, 46, 0.1) 0px 48px 30px -20px;
+  transition: all 0.5s ease-in-out;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    
+      transform: scale(1.1);
+    
+  }
+}
+
+.content {
+  color: rgb(164, 164, 164);
+  margin: 0;
+ 
+}
+
+.read-more-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  color:rgb(58, 58, 58);
+
+}
+
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.primary-buttons-container {
+  display: flex;
+  gap: 1rem;
+
+  button {
+    background: none;
+    border: none;
+
+
+  }
+}
+
+button {
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.8);
+  }
+}
+
+button {
+  svg:hover {
+    stroke: rgb(8, 186, 218);
+  }
+}
+
+.like-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+}
+
+.secondary-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  button {
+    background: none;
+    border: none;
+  }
+}
+
+.heart-container {
+    --heart-color: rgb(240, 0, 0);
+    position: relative;
+    width: 25px;
+    height: 25px;
+    transition: .3s;
+  }
+  
+  .heart-container .checkbox {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 20;
+    cursor: pointer;
+  }
+  
+  .heart-container .svg-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .heart-container .svg-outline,
+          .heart-container .svg-filled {
+    fill: var(--heart-color);
+    position: absolute;
+  }
+  
+  .heart-container .svg-filled {
+    animation: keyframes-svg-filled 1s;
+    display: none;
+  }
+  
+  .heart-container .svg-celebrate {
+    position: absolute;
+    animation: keyframes-svg-celebrate .5s;
+    animation-fill-mode: forwards;
+    display: none;
+    stroke: var(--heart-color);
+    fill: var(--heart-color);
+    stroke-width: 2px;
+  }
+  
+  .heart-container .checkbox:checked~.svg-container .svg-filled {
+    display: block
+  }
+  
+  .heart-container .checkbox:checked~.svg-container .svg-celebrate {
+    display: block
+  }
+  
+  @keyframes keyframes-svg-filled {
+    0% {
+      transform: scale(0);
+    }
+  
+    25% {
+      transform: scale(1.2);
+    }
+  
+    50% {
+      transform: scale(1);
+      filter: brightness(1.5);
+    }
+  }
+  
+  @keyframes keyframes-svg-celebrate {
+    0% {
+      transform: scale(0);
+    }
+  
+    50% {
+      opacity: 1;
+      filter: brightness(1.5);
+    }
+  
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+      display: none;
+    }
+  }
+
+.comment-card-container{
+  height: 100dvh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.346);
+  display: grid;
+  place-content: center;
+  display: none;
+  backdrop-filter: blur(1rem);
+
+  .card {
+    background: white;
+    max-width: 600px;
+    min-width: 600px;
+    height: 500px;
+    padding: 1rem;
+
+   
+  }
+}
+
+
+.comments-container {
+  height: 100%;
+  overflow-y: auto;
+}

@@ -1,0 +1,35 @@
+<div class="card-body card mb-3">
+  <div class="card-body">
+    <div class="leftContainer">
+      <img
+        [src]="user.profilePicture ? user.profilePicture : defaultImage"
+        alt="pic"
+        class="image"
+      />
+      <div>
+        <h5 class="card-title">{{ user.firstName }}</h5>
+        <p class="card-text">{{ user.designation }}</p>
+        <p class="card-text">{{ user.departament }}</p>
+      </div>
+    </div>
+    <div>
+      <button
+        type="button"
+        class="btn btn-success p-3 m-2 btn-custom"
+        style="background-color: #26aaab"
+        (click)="acceptConnection(user.id)"
+      >
+        <mat-icon> check</mat-icon>
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-danger p-3 m-2 btn-custom"
+        (click)="declineConnection(user.id)"
+      >
+        <mat-icon><div>&#10006;</div></mat-icon>
+      </button>
+      <div></div>
+    </div>
+  </div>
+</div>

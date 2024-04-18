@@ -1,0 +1,230 @@
+<!--displaying all post -->
+
+<app-header />
+<div class="main-container">
+  <div class="left">
+    <div class="col-12 profile-container">
+      <div id="sidePanel1" class="card widget-card border-light shadow-sm">
+        <div class="card-header">Welcome, {{ user.username }}</div>
+        <div class="card-body">
+          <div id="imageDiv" class="text-center mb-3">
+            <img [src]="user.profilePicture ? user.profilePicture : defaultImage " alt="Profile Picture" />
+          </div>
+          <div class="text-center mb-1">
+            {{ user.firstName + " " + user.lastName }}
+          </div>
+          <p class="text-center text-secondary mb-4">
+            {{ user.designation }}
+          </p>
+          <ul class="list-group list-group-flush mb-4">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <h6 class="m-0">Connections</h6>
+              <span>{{ connections }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- checkbox fpr filtering -->
+    <div class="checkbox-container">
+      <div class="checkbox-wrapper-46">
+        <input
+          type="checkbox"
+          id="blog"
+          class="inp-cbx"
+          [(ngModel)]="blog"
+          (change)="filterPost()"
+        />
+        <label for="blog" class="cbx"
+          ><span>
+            <svg viewBox="0 0 12 10" height="10px" width="12px">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+          ><span>Blog</span>
+        </label>
+      </div>
+      <div class="checkbox-wrapper-46">
+        <input
+          type="checkbox"
+          id="article"
+          class="inp-cbx"
+          [(ngModel)]="article"
+          (change)="filterPost()"
+        />
+        <label for="article" class="cbx"
+          ><span>
+            <svg viewBox="0 0 12 10" height="10px" width="12px">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+          ><span>Article</span>
+        </label>
+      </div>
+      <div class="checkbox-wrapper-46">
+        <input
+          type="checkbox"
+          id="projectInsight"
+          class="inp-cbx"
+          [(ngModel)]="insights"
+          (change)="filterPost()"
+        />
+        <label for="projectInsight" class="cbx"
+          ><span>
+            <svg viewBox="0 0 12 10" height="10px" width="12px">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline></svg></span
+          ><span>Project Insights</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div class="add-post-main-container">
+      <div class="top-container">
+        <div class="img-container">
+          <img
+            [src]="user.profilePicture ? user.profilePicture : defaultImage"
+            alt="Profile"
+          />
+        </div>
+        <input
+          type="text"
+          placeholder="Upload your Post here"
+          (click)="openModal()"
+        />
+      </div>
+      <div class="buttons-container">
+        <button class="button" (click)="updateValue('1')">
+          <!-- <svg></svg> -->
+          Blog
+        </button>
+        <button (click)="updateValue('2')">
+          <!-- <svg></svg> -->
+          Article
+        </button>
+        <button (click)="updateValue('3')">
+          <!-- <svg></svg> -->
+          Project Insights
+        </button>
+      </div>
+    </div>
+    <div class="container mt-4">
+      <!-- <h2>Posts</h2> -->
+      <div *ngIf="loading">Loading...</div>
+      <div class="list-group" *ngIf="!loading && posts.length">
+        <app-post
+          *ngFor="let post of filteredPosts"
+          [postDetail]="post"
+          (editPostId)="editPost($event)"
+          (deletePostId)="deletePost($event)"
+        ></app-post>
+      </div>
+      <div *ngIf="!loading && !posts.length">No posts found.</div>
+    </div>
+  </div>
+</div>
+
+<div #myModal tabindex="-1" class="new-post-container modal">
+  <div class="" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Post</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="closeModal(myForm)"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Category</label>
+              <select
+                class="form-control"
+                name="category"
+                id="category"
+                [(ngModel)]="formData.category"
+                required
+              >
+                <option disabled selected>Category</option>
+                <option value="1">Blog</option>
+                <option value="2">Article</option>
+                <option value="3">Project Insights</option>
+              </select>
+              <div
+                *ngIf="
+                  myForm.controls['category']?.touched &&
+                  myForm.controls['category']?.invalid
+                "
+                class="text-danger"
+              >
+                Select Valid Category
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput2">File</label>
+              <input
+                type="file"
+                name="image"
+                class="form-control"
+                id="image"
+                (change)="onFileSelected($event)"
+                [(ngModel)]="formData.imageUrl"
+                required
+              />
+              <div>Note : Image should in jpeg or png</div>
+              <div
+                *ngIf="
+                  myForm.controls['image']?.touched &&
+                  myForm.controls['image']?.invalid
+                "
+                class="text-danger"
+              >
+                Image is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="caption">Content</label>
+              <input
+                type="text"
+                name="caption"
+                class="form-control"
+                id="caption"
+                placeholder="Enter something"
+                [(ngModel)]="formData.content"
+                required
+              />
+              <div
+                *ngIf="
+                  myForm.controls['caption']?.touched &&
+                  myForm.controls['caption']?.invalid
+                "
+                class="text-danger"
+              >
+                Caption is required
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="closeModal(myForm)"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!fileData"
+              >
+                Upload Post
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
